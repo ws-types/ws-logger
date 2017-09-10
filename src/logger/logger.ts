@@ -13,6 +13,9 @@ export class Logger<T> implements ILogger {
 
     constructor(private config: LOGGER_SERVICE_CONFIG, typeMeta: Function) {
         this._comp = Regex.Create(/function (.+?)\(.+/i).Matches(typeMeta.toString(), ['FNCM'])['FNCM'];
+        if (config.styles) {
+            this._styles = config.styles;
+        }
     }
 
     public SetModule = <T>(_module: string): Logger<T> => {
@@ -54,7 +57,7 @@ export class Logger<T> implements ILogger {
                     type === LogType.Warn ? 'WARN' :
                         'ERROR';
         let [param01, param02, param03]: [string, any, any] = [null, null, null];
-        const styles: LogStyle = DefaultLogStyles[type];
+        const styles: LogStyle = this.LogStyles[type] || DefaultLogStyles[type];
         if (msg instanceof Array) {
             param01 = msg[0];
             if (typeof (msg[1]) === 'string') {

@@ -41,7 +41,7 @@ var Logger = /** @class */ (function () {
                     type === interfaces_1.LogType.Warn ? 'WARN' :
                         'ERROR';
             var _a = [null, null, null], param01 = _a[0], param02 = _a[1], param03 = _a[2];
-            var styles = interfaces_1.DefaultLogStyles[type];
+            var styles = _this.LogStyles[type] || interfaces_1.DefaultLogStyles[type];
             if (msg instanceof Array) {
                 param01 = msg[0];
                 if (typeof (msg[1]) === 'string') {
@@ -77,6 +77,9 @@ var Logger = /** @class */ (function () {
             return printLogs(container);
         };
         this._comp = ws_regex_1.Regex.Create(/function (.+?)\(.+/i).Matches(typeMeta.toString(), ['FNCM'])['FNCM'];
+        if (config.styles) {
+            this._styles = config.styles;
+        }
     }
     Object.defineProperty(Logger.prototype, "LogStyles", {
         get: function () { return this._styles; },
