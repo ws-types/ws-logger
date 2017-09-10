@@ -59,10 +59,8 @@ export class Logger<T> implements ILogger {
             param01 = msg[0];
             if (typeof (msg[1]) === 'string') {
                 param02 = msg[1];
-                console.log('is descrip.');
             } else {
                 param03 = msg[1];
-                console.log('is obj.');
             }
             if (msg.length > 2) {
                 param02 = msg[1];

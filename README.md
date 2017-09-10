@@ -88,7 +88,7 @@ You should use logger instance to custom your log styles, you can set some level
 ```typescript
 /*change target level style.*/
 this.logger.SetLogStyle(LogType.Debug, {
-  icon: `background-color:#3eb370;font-size:1.6em;color:white;font-family:'Century Gothic','YaHei';font-weight:900`,
+  icon: `background-color:black;font-size:1.6em;color:white;font-family:'Century Gothic','YaHei';font-weight:900`,
   msg: `font-size:1.3em;font-weight:700;font-family:'Century Gothic','YaHei';line-height:1.6;`,
   route: 'background-color:#a4e2c6;line-height:1.2;',
   descrb: `color:#787878;font-family:'Century Gothic';line-height:1.7;background-color:#fafafa;`,
@@ -159,3 +159,4 @@ this.logger.LogStyles = [
     }
 ];
 ```
+![](img/004.png)

@@ -1,5 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var interfaces_1 = require("./logger/interfaces");
+exports.LogType = interfaces_1.LogType;
 var logger_1 = require("./logger/logger");
 exports.Logger = logger_1.Logger;
 var logger_service_1 = require("./services/logger.service");
