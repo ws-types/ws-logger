@@ -8,8 +8,6 @@ export class Logger<T> implements ILogger {
     private _module: string;
 
     constructor(private config: LOGGER_SERVICE_CONFIG, typeMeta: Function) {
-        console.log(typeMeta);
-        console.log(Regex.Create(/function (.+?)\(.+/i).Matches(typeMeta.toString(), ['FNCM']));
         this._comp = Regex.Create(/function (.+?)\(.+/i).Matches(typeMeta.toString(), ['FNCM'])['FNCM'];
     }
 
