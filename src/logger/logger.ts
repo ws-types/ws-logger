@@ -5,7 +5,11 @@ import { Regex } from 'ws-regex';
 export class Logger<T> implements ILogger {
 
     private _comp: string;
-    private _module: string;
+    private _module = 'MODULE';
+
+    private _styles = DefaultLogStyles;
+    public get LogStyles() { return this._styles; }
+    public set LogStyles(value: LogStyle[]) { this._styles = value; }
 
     constructor(private config: LOGGER_SERVICE_CONFIG, typeMeta: Function) {
         this._comp = Regex.Create(/function (.+?)\(.+/i).Matches(typeMeta.toString(), ['FNCM'])['FNCM'];
@@ -13,6 +17,16 @@ export class Logger<T> implements ILogger {
 
     public SetModule = <T>(_module: string): Logger<T> => {
         this._module = _module.toUpperCase();
+        return this;
+    }
+
+    public SetLogStyle = <T>(type: LogType, style: LogStyle): Logger<T> => {
+        this._styles[type] = style;
+        return this;
+    }
+
+    public SetLogStyles = <T>(styles: LogStyle[]): Logger<T> => {
+        this._styles = styles;
         return this;
     }
 
@@ -43,7 +57,13 @@ export class Logger<T> implements ILogger {
         const styles: LogStyle = DefaultLogStyles[type];
         if (msg instanceof Array) {
             param01 = msg[0];
-            param03 = msg[1];
+            if (typeof (msg[1]) === 'string') {
+                param02 = msg[1];
+                console.log('is descrip.');
+            } else {
+                param03 = msg[1];
+                console.log('is obj.');
+            }
             if (msg.length > 2) {
                 param02 = msg[1];
                 param03 = msg[2];
@@ -57,12 +77,14 @@ export class Logger<T> implements ILogger {
             format: this.config.IsProduction ?
                 `%c ${typeStr}-> \n%c${param01 || 'No message recorded.'}\n` :
                 `%c ${typeStr}-> \n%c${param01 || 'No message recorded.'}\n` +
-                `%c=>[${module_name || this._module.toUpperCase() || 'MODULE'}]-[${this._comp || 'WHERE'}]-[${method_name || 'METHOD'}]\n` +
-                `%c${param02 || 'no descriptions.'}\n`,
+                `%c=>[${module_name || this._module.toUpperCase()}]-[${this._comp || 'WHERE'}]-[${method_name || 'METHOD'}]` +
+                (param02 === null ? `\n` : `\n%c${param02}\n`),
             obj: param03,
             styles: this.config.IsProduction ?
                 [styles.icon, styles.msg] :
-                [styles.icon, styles.msg, styles.route, styles.descrb],
+                param02 !== null ?
+                    [styles.icon, styles.msg, styles.route, styles.descrb] :
+                    [styles.icon, styles.msg, styles.route],
         };
         return printLogs(container);
     }

@@ -82,3 +82,80 @@ You can show the file position in color grid.
 ![](img/003.png)
 
 I will provide methods for custom-styles and more features later.
+
+## Custom styles now is avalible
+You should use logger instance to custom your log styles, you can set some level-styles in constructor so that the whole component socpe can use them.
+```typescript
+/*change target level style.*/
+this.logger.SetLogStyle(LogType.Debug, {
+  icon: `background-color:#3eb370;font-size:1.6em;color:white;font-family:'Century Gothic','YaHei';font-weight:900`,
+  msg: `font-size:1.3em;font-weight:700;font-family:'Century Gothic','YaHei';line-height:1.6;`,
+  route: 'background-color:#a4e2c6;line-height:1.2;',
+  descrb: `color:#787878;font-family:'Century Gothic';line-height:1.7;background-color:#fafafa;`,
+  stamp: `font-size:0.6em;font-family:'Century Gothic';line-height:1.5;`
+}).Debug(...);
+
+/** you alse can changes all styles for logger.
+  * [Debug, Info, Warn, Error]
+  */
+this.logger.SetLogStyle([
+    {
+        icon: `background-color:#3eb370;font-size:1.6em;color:white;font-family:'Century Gothic','YaHei';font-weight:900`,
+        msg: `font-size:1.3em;font-weight:700;font-family:'Century Gothic','YaHei';line-height:1.6;`,
+        route: 'background-color:#a4e2c6;line-height:1.2;',
+        descrb: `color:#787878;font-family:'Century Gothic';line-height:1.7;background-color:#fafafa;`,
+        stamp: `font-size:0.6em;font-family:'Century Gothic';line-height:1.5;`
+    },
+    {
+        icon: `background-color:#4c6cb3;font-size:1.6em;color:white;font-family:'Century Gothic','YaHei';font-weight:900`,
+        msg: `font-size:1.3em;font-weight:700;font-family:'Century Gothic','YaHei';line-height:1.6;`,
+        route: 'background-color:#a1afc9;line-height:1.2;',
+        descrb: `color:#787878;font-family:'Century Gothic';line-height:1.7;background-color:#fafafa;`,
+        stamp: `font-size:0.6em;font-family:'Century Gothic';line-height:1.5;`
+    }, {
+        icon: `background-color:#ffa500;font-size:1.6em;color:white;font-family:'Century Gothic','YaHei';font-weight:900`,
+        msg: `font-size:1.3em;font-weight:700;font-family:'Century Gothic','YaHei';line-height:1.6;`,
+        route: 'background-color:#f5e56b;line-height:1.2;',
+        descrb: `color:#787878;font-family:'Century Gothic';line-height:1.7;background-color:#fafafa;`,
+        stamp: `font-size:0.6em;font-family:'Century Gothic';line-height:1.5;`
+    },
+    {
+        icon: `background-color:#c93756;font-size:1.6em;color:white;font-family:'Century Gothic','YaHei';font-weight:900`,
+        msg: `font-size:1.3em;font-weight:700;font-family:'Century Gothic','YaHei';line-height:1.6;`,
+        route: 'background-color:#ffb3a7;line-height:1.2;',
+        descrb: `color:#787878;font-family:'Century Gothic';line-height:1.7;background-color:#fafafa;`,
+        stamp: `font-size:0.6em;font-family:'Century Gothic';line-height:1.5;`
+    }
+]);
+
+/*anyway ,you can use property instead.*/
+this.logger.LogStyles = [
+   {
+        icon: `background-color:#3eb370;font-size:1.6em;color:white;font-family:'Century Gothic','YaHei';font-weight:900`,
+        msg: `font-size:1.3em;font-weight:700;font-family:'Century Gothic','YaHei';line-height:1.6;`,
+        route: 'background-color:#a4e2c6;line-height:1.2;',
+        descrb: `color:#787878;font-family:'Century Gothic';line-height:1.7;background-color:#fafafa;`,
+        stamp: `font-size:0.6em;font-family:'Century Gothic';line-height:1.5;`
+    },
+    {
+        icon: `background-color:#4c6cb3;font-size:1.6em;color:white;font-family:'Century Gothic','YaHei';font-weight:900`,
+        msg: `font-size:1.3em;font-weight:700;font-family:'Century Gothic','YaHei';line-height:1.6;`,
+        route: 'background-color:#a1afc9;line-height:1.2;',
+        descrb: `color:#787878;font-family:'Century Gothic';line-height:1.7;background-color:#fafafa;`,
+        stamp: `font-size:0.6em;font-family:'Century Gothic';line-height:1.5;`
+    }, {
+        icon: `background-color:#ffa500;font-size:1.6em;color:white;font-family:'Century Gothic','YaHei';font-weight:900`,
+        msg: `font-size:1.3em;font-weight:700;font-family:'Century Gothic','YaHei';line-height:1.6;`,
+        route: 'background-color:#f5e56b;line-height:1.2;',
+        descrb: `color:#787878;font-family:'Century Gothic';line-height:1.7;background-color:#fafafa;`,
+        stamp: `font-size:0.6em;font-family:'Century Gothic';line-height:1.5;`
+    },
+    {
+        icon: `background-color:#c93756;font-size:1.6em;color:white;font-family:'Century Gothic','YaHei';font-weight:900`,
+        msg: `font-size:1.3em;font-weight:700;font-family:'Century Gothic','YaHei';line-height:1.6;`,
+        route: 'background-color:#ffb3a7;line-height:1.2;',
+        descrb: `color:#787878;font-family:'Century Gothic';line-height:1.7;background-color:#fafafa;`,
+        stamp: `font-size:0.6em;font-family:'Century Gothic';line-height:1.5;`
+    }
+];
+```

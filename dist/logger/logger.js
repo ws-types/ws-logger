@@ -6,8 +6,18 @@ var Logger = /** @class */ (function () {
     function Logger(config, typeMeta) {
         var _this = this;
         this.config = config;
+        this._module = 'MODULE';
+        this._styles = interfaces_1.DefaultLogStyles;
         this.SetModule = function (_module) {
             _this._module = _module.toUpperCase();
+            return _this;
+        };
+        this.SetLogStyle = function (type, style) {
+            _this._styles[type] = style;
+            return _this;
+        };
+        this.SetLogStyles = function (styles) {
+            _this._styles = styles;
             return _this;
         };
         this.Debug = function (msg, method_name, module_name) {
@@ -34,7 +44,14 @@ var Logger = /** @class */ (function () {
             var styles = interfaces_1.DefaultLogStyles[type];
             if (msg instanceof Array) {
                 param01 = msg[0];
-                param03 = msg[1];
+                if (typeof (msg[1]) === 'string') {
+                    param02 = msg[1];
+                    console.log('is descrip.');
+                }
+                else {
+                    param03 = msg[1];
+                    console.log('is obj.');
+                }
                 if (msg.length > 2) {
                     param02 = msg[1];
                     param03 = msg[2];
@@ -50,24 +67,31 @@ var Logger = /** @class */ (function () {
                 format: _this.config.IsProduction ?
                     "%c " + typeStr + "-> \n%c" + (param01 || 'No message recorded.') + "\n" :
                     "%c " + typeStr + "-> \n%c" + (param01 || 'No message recorded.') + "\n" +
-                        ("%c=>[" + (module_name || _this._module.toUpperCase() || 'MODULE') + "]-[" + (_this._comp || 'WHERE') + "]-[" + (method_name || 'METHOD') + "]\n") +
-                        ("%c" + (param02 || 'no descriptions.') + "\n"),
+                        ("%c=>[" + (module_name || _this._module.toUpperCase()) + "]-[" + (_this._comp || 'WHERE') + "]-[" + (method_name || 'METHOD') + "]") +
+                        (param02 === null ? "\n" : "\n%c" + param02 + "\n"),
                 obj: param03,
                 styles: _this.config.IsProduction ?
                     [styles.icon, styles.msg] :
-                    [styles.icon, styles.msg, styles.route, styles.descrb],
+                    param02 !== null ?
+                        [styles.icon, styles.msg, styles.route, styles.descrb] :
+                        [styles.icon, styles.msg, styles.route],
             };
             return printLogs(container);
         };
-        console.log(typeMeta);
-        console.log(ws_regex_1.Regex.Create(/function (.+?)\(.+/i).Matches(typeMeta.toString(), ['FNCM']));
         this._comp = ws_regex_1.Regex.Create(/function (.+?)\(.+/i).Matches(typeMeta.toString(), ['FNCM'])['FNCM'];
     }
+    Object.defineProperty(Logger.prototype, "LogStyles", {
+        get: function () { return this._styles; },
+        set: function (value) { this._styles = value; },
+        enumerable: true,
+        configurable: true
+    });
     return Logger;
 }());
 exports.Logger = Logger;
 var printLogs = function (contr) {
     var coll = [contr.format].concat(contr.styles);
+    console.log(coll.join('@'));
     if (contr.obj) {
         coll.push(contr.obj);
     }
