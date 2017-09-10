@@ -91,7 +91,6 @@ var Logger = /** @class */ (function () {
 exports.Logger = Logger;
 var printLogs = function (contr) {
     var coll = [contr.format].concat(contr.styles);
-    console.log(coll.join('@'));
     if (contr.obj) {
         coll.push(contr.obj);
     }
