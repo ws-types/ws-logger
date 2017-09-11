@@ -76,10 +76,10 @@ export class Logger<T> implements ILogger {
         }
         const container: LogsContainer = {
             format: this.config.IsProduction ?
-                `%c ${typeStr}-> \n%c${param01 || 'No message recorded.'}` + (param02 === null ? `\n` : `\n%c${param02}\n`) :
+                `%c ${typeStr}-> \n%c${param01 || 'No message recorded.'}` + (param02 === null ? `` : `\n%c${param02}\n`) :
                 `%c ${typeStr}-> \n%c${param01 || 'No message recorded.'}\n` +
                 `%c=>[${module_name || this._module.toUpperCase()}]-[${this._comp || 'WHERE'}]-[${method_name || 'METHOD'}]` +
-                (param02 === null ? `\n` : `\n%c${param02}\n`),
+                (param02 === null ? `` : `\n%c${param02}\n`),
             obj: !this.config.IsProduction ? param03 : null,
             styles: this.config.IsProduction ?
                 param02 !== null ?

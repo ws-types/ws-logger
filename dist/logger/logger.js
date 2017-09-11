@@ -63,10 +63,10 @@ var Logger = /** @class */ (function () {
             }
             var container = {
                 format: _this.config.IsProduction ?
-                    "%c " + typeStr + "-> \n%c" + (param01 || 'No message recorded.') + (param02 === null ? "\n" : "\n%c" + param02 + "\n") :
+                    "%c " + typeStr + "-> \n%c" + (param01 || 'No message recorded.') + (param02 === null ? "" : "\n%c" + param02 + "\n") :
                     "%c " + typeStr + "-> \n%c" + (param01 || 'No message recorded.') + "\n" +
                         ("%c=>[" + (module_name || _this._module.toUpperCase()) + "]-[" + (_this._comp || 'WHERE') + "]-[" + (method_name || 'METHOD') + "]") +
-                        (param02 === null ? "\n" : "\n%c" + param02 + "\n"),
+                        (param02 === null ? "" : "\n%c" + param02 + "\n"),
                 obj: !_this.config.IsProduction ? param03 : null,
                 styles: _this.config.IsProduction ?
                     param02 !== null ?

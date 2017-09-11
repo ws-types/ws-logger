@@ -18,14 +18,6 @@ npm install ws-regex --save
 ```typescript
 import { LoggerService, LOGGER_SERVICE_CONFIG } from 'ws-logger';
 
-/*close debug mode and details for production mode if need. */
-let level = 0;
-let isProd = false;
-if (environment.production) {
-  level = 1;
-  isProd = true;
-}
-
 // ...
 @NgModule({
   declarations: [
@@ -36,8 +28,12 @@ if (environment.production) {
   ],
   providers: [
     // ...
-    /* provide config for logger service if need. */
-    { provide: LOGGER_SERVICE_CONFIG, useValue: { Level: level, IsProduction: isProd } },
+    /* provide config to close debug mode and details for production mode in logger service if need. */
+    { provide: LOGGER_SERVICE_CONFIG, useValue: { 
+        Level: environment.production? 1 : 0, 
+        IsProduction: environment.production 
+        }
+     },
     /*you should add service here.*/
     LoggerService
   ],
