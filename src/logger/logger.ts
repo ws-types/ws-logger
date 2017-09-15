@@ -76,10 +76,10 @@ export class Logger<T> implements ILogger {
         }
         const container: LogsContainer = {
             format: this.config.IsProduction ?
-                `%c ${typeStr}-> \n%c${param01 || 'No message recorded.'}` + (param02 === null ? `` : `\n%c${param02}\n`) :
-                `%c ${typeStr}-> \n%c${param01 || 'No message recorded.'}\n` +
+                `%c ${typeStr} >> \n%c${param01 || 'No message recorded.'}` + (param02 === null ? `` : `\n%c${param02}`) :
+                `%c ${typeStr} >> \n%c${param01 || 'No message recorded.'}\n` +
                 `%c=>[${module_name || this._module.toUpperCase()}]-[${this._comp || 'WHERE'}]-[${method_name || 'METHOD'}]` +
-                (param02 === null ? `` : `\n%c${param02}\n`),
+                (param02 === null ? `` : `\n%c${param02}`),
             obj: !this.config.IsProduction ? param03 : null,
             styles: this.config.IsProduction ?
                 param02 !== null ?
@@ -96,6 +96,21 @@ export class Logger<T> implements ILogger {
 
 const printLogs = (contr: LogsContainer): void => {
     const coll: any[] = [contr.format, ...contr.styles];
-    if (contr.obj) { coll.push(contr.obj); }
+    if (contr.obj) {
+        coll[0] += '\n'
+        coll.push(contr.obj);
+    }
     console.log(...coll, '\n-------------\n' + new Date().toLocaleTimeString() + '\n-');
 };
+
+// const logger = new Logger({ Level: 0, IsProduction: true, styles: [] }, Logger);
+// logger.Debug(['message', 'description', 9654312], 'method');
+// console.log('--------------------------------------')
+// logger.Debug(['message', 9654312], 'method');
+// console.log('--------------------------------------')
+// logger.Debug(['message', 'description'], 'method');
+// console.log('--------------------------------------')
+// logger.Debug('message', 'method');
+// console.log('--------------------------------------')
+// logger.Debug(9654312, 'method');
+// console.log('--------------------------------------')

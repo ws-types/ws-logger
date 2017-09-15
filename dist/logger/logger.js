@@ -63,10 +63,10 @@ var Logger = /** @class */ (function () {
             }
             var container = {
                 format: _this.config.IsProduction ?
-                    "%c " + typeStr + "-> \n%c" + (param01 || 'No message recorded.') + (param02 === null ? "" : "\n%c" + param02 + "\n") :
-                    "%c " + typeStr + "-> \n%c" + (param01 || 'No message recorded.') + "\n" +
+                    "%c " + typeStr + " >> \n%c" + (param01 || 'No message recorded.') + (param02 === null ? "" : "\n%c" + param02) :
+                    "%c " + typeStr + " >> \n%c" + (param01 || 'No message recorded.') + "\n" +
                         ("%c=>[" + (module_name || _this._module.toUpperCase()) + "]-[" + (_this._comp || 'WHERE') + "]-[" + (method_name || 'METHOD') + "]") +
-                        (param02 === null ? "" : "\n%c" + param02 + "\n"),
+                        (param02 === null ? "" : "\n%c" + param02),
                 obj: !_this.config.IsProduction ? param03 : null,
                 styles: _this.config.IsProduction ?
                     param02 !== null ?
@@ -95,7 +95,19 @@ exports.Logger = Logger;
 var printLogs = function (contr) {
     var coll = [contr.format].concat(contr.styles);
     if (contr.obj) {
+        coll[0] += '\n';
         coll.push(contr.obj);
     }
     console.log.apply(console, coll.concat(['\n-------------\n' + new Date().toLocaleTimeString() + '\n-']));
 };
+// const logger = new Logger({ Level: 0, IsProduction: true, styles: [] }, Logger);
+// logger.Debug(['message', 'description', 9654312], 'method');
+// console.log('--------------------------------------')
+// logger.Debug(['message', 9654312], 'method');
+// console.log('--------------------------------------')
+// logger.Debug(['message', 'description'], 'method');
+// console.log('--------------------------------------')
+// logger.Debug('message', 'method');
+// console.log('--------------------------------------')
+// logger.Debug(9654312, 'method');
+// console.log('--------------------------------------')
