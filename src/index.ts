@@ -1,6 +1,4 @@
-import { LogType } from './logger/interfaces';
-import { Logger } from './logger/logger';
+import { DefaultLogStyles, LogStyle, LogType, LOGGER_SERVICE_CONFIG, Logger } from 'ws-logger-generic';
 import { LoggerService } from './services/logger.service';
-import { LOGGER_SERVICE_CONFIG } from './logger/config';
 
-export { LoggerService, LOGGER_SERVICE_CONFIG, Logger, LogType } 
+export { LoggerService, LOGGER_SERVICE_CONFIG, Logger, LogType, LogStyle, DefaultLogStyles } 

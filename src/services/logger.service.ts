@@ -1,8 +1,6 @@
-import { ILogger } from './../logger/interfaces';
-import { LOGGER_SERVICE_CONFIG } from './../logger/config';
-import { Logger } from './../logger/logger';
 import { Injectable } from '@angular/core';
-import { InputMsg } from '../logger/interfaces';
+import { InputMsg, ILogger } from 'ws-logger-generic/dist/logger/interfaces';
+import { Logger, LOGGER_SERVICE_CONFIG } from 'ws-logger-generic';
 
 @Injectable()
 export class LoggerService implements ILogger {

@@ -9,15 +9,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var config_1 = require("./../logger/config");
-var logger_1 = require("./../logger/logger");
 var core_1 = require("@angular/core");
+var ws_logger_generic_1 = require("ws-logger-generic");
 var LoggerService = /** @class */ (function () {
     function LoggerService(config) {
         var _this = this;
         this.config = config;
         this.GetLogger = function (typeMeta, _module) {
-            return new logger_1.Logger(_this.config, typeMeta).SetModule(_module || 'Module');
+            return new ws_logger_generic_1.Logger(_this.config, typeMeta).SetModule(_module || 'Module');
         };
         this.Debug = function (msg, method_name, module_name) {
             _this.generic_logger.Debug(msg, method_name, module_name);
@@ -36,7 +35,7 @@ var LoggerService = /** @class */ (function () {
     LoggerService_1 = LoggerService;
     LoggerService = LoggerService_1 = __decorate([
         core_1.Injectable(),
-        __metadata("design:paramtypes", [config_1.LOGGER_SERVICE_CONFIG])
+        __metadata("design:paramtypes", [ws_logger_generic_1.LOGGER_SERVICE_CONFIG])
     ], LoggerService);
     return LoggerService;
     var LoggerService_1;

@@ -1,6 +1,5 @@
-import { ILogger } from './../logger/interfaces';
-import { LOGGER_SERVICE_CONFIG } from './../logger/config';
-import { Logger } from './../logger/logger';
+import { ILogger } from 'ws-logger-generic/dist/logger/interfaces';
+import { Logger, LOGGER_SERVICE_CONFIG } from 'ws-logger-generic';
 export declare class LoggerService implements ILogger {
     private config;
     private generic_logger;
