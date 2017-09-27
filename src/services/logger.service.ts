@@ -8,27 +8,31 @@ export class LoggerService implements ILogger {
     private generic_logger: Logger<LoggerService>;
 
     constructor(private config: LOGGER_SERVICE_CONFIG) {
-        this.generic_logger = this.GetLogger<LoggerService>(LoggerService).SetModule('None');
+        this.generic_logger = this.GetLogger<LoggerService>(LoggerService).SetModule('Default');
     }
 
-    public GetLogger = <T>(typeMeta: Function, _module?: string) => {
+    public readonly GetLogger = <T>(typeMeta: Function, _module?: string) => {
         return new Logger<T>(this.config, typeMeta).SetModule(_module || 'Module');
     }
 
-    public Debug = (msg: InputMsg, method_name?: string, module_name?: string): void => {
+    public readonly SetConfig = (config: LOGGER_SERVICE_CONFIG): void => {
+        this.config = config;
+    }
+
+    public readonly Debug = (msg: InputMsg, method_name?: string, module_name?: string): void => {
         this.generic_logger.Debug(msg, method_name, module_name);
     }
 
-    public Info = (msg: InputMsg, method_name?: string, module_name?: string): void => {
+    public readonly Info = (msg: InputMsg, method_name?: string, module_name?: string): void => {
         this.generic_logger.Info(msg, method_name, module_name);
     }
 
 
-    public Warn = (msg: InputMsg, method_name?: string, module_name?: string): void => {
+    public readonly Warn = (msg: InputMsg, method_name?: string, module_name?: string): void => {
         this.generic_logger.Warn(msg, method_name, module_name);
     }
 
-    public Error = (msg: InputMsg, method_name?: string, module_name?: string): void => {
+    public readonly Error = (msg: InputMsg, method_name?: string, module_name?: string): void => {
         this.generic_logger.Error(msg, method_name, module_name);
     }
 

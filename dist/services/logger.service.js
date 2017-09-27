@@ -18,6 +18,9 @@ var LoggerService = /** @class */ (function () {
         this.GetLogger = function (typeMeta, _module) {
             return new ws_logger_generic_1.Logger(_this.config, typeMeta).SetModule(_module || 'Module');
         };
+        this.SetConfig = function (config) {
+            _this.config = config;
+        };
         this.Debug = function (msg, method_name, module_name) {
             _this.generic_logger.Debug(msg, method_name, module_name);
         };
@@ -30,7 +33,7 @@ var LoggerService = /** @class */ (function () {
         this.Error = function (msg, method_name, module_name) {
             _this.generic_logger.Error(msg, method_name, module_name);
         };
-        this.generic_logger = this.GetLogger(LoggerService_1).SetModule('None');
+        this.generic_logger = this.GetLogger(LoggerService_1).SetModule('Default');
     }
     LoggerService_1 = LoggerService;
     LoggerService = LoggerService_1 = __decorate([
