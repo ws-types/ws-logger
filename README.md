@@ -1,4 +1,6 @@
 # ws-logger : LoggerService for angular4
+[![Build Status](https://travis-ci.org/ws-types/ws-logger.svg?branch=master)](https://travis-ci.org/ws-types/ws-logger)
+
 Easy logger through ES5/Typescript with injectable service.
 
 This is a library to make logger service more powerful. 
