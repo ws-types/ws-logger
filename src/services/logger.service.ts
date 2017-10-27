@@ -8,10 +8,10 @@ export class LoggerService implements ILogger {
     private generic_logger: Logger<LoggerService>;
 
     constructor(private config: LOGGER_SERVICE_CONFIG) {
-        this.generic_logger = this.GetLogger<LoggerService>(LoggerService).SetModule('Default');
+        this.generic_logger = this.GetLogger<LoggerService>('LoggerService').SetModule('Default');
     }
 
-    public readonly GetLogger = <T>(typeMeta: Function, _module?: string) => {
+    public readonly GetLogger = <T>(typeMeta: Function | string, _module?: string) => {
         return new Logger<T>(this.config, typeMeta).SetModule(_module || 'Module');
     }
 

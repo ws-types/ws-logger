@@ -7,3 +7,4 @@ exports.LOGGER_SERVICE_CONFIG = ws_logger_generic_1.LOGGER_SERVICE_CONFIG;
 exports.Logger = ws_logger_generic_1.Logger;
 var logger_service_1 = require("./services/logger.service");
 exports.LoggerService = logger_service_1.LoggerService;
+//# sourceMappingURL=index.js.map

@@ -4,7 +4,7 @@ export declare class LoggerService implements ILogger {
     private config;
     private generic_logger;
     constructor(config: LOGGER_SERVICE_CONFIG);
-    readonly GetLogger: <T>(typeMeta: Function, _module?: string) => Logger<{}>;
+    readonly GetLogger: <T>(typeMeta: string | Function, _module?: string) => Logger<{}>;
     readonly SetConfig: (config: LOGGER_SERVICE_CONFIG) => void;
     readonly Debug: (msg: any, method_name?: string, module_name?: string) => void;
     readonly Info: (msg: any, method_name?: string, module_name?: string) => void;

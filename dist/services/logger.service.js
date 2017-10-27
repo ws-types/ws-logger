@@ -33,14 +33,13 @@ var LoggerService = /** @class */ (function () {
         this.Error = function (msg, method_name, module_name) {
             _this.generic_logger.Error(msg, method_name, module_name);
         };
-        this.generic_logger = this.GetLogger(LoggerService_1).SetModule('Default');
+        this.generic_logger = this.GetLogger('LoggerService').SetModule('Default');
     }
-    LoggerService_1 = LoggerService;
-    LoggerService = LoggerService_1 = __decorate([
+    LoggerService = __decorate([
         core_1.Injectable(),
         __metadata("design:paramtypes", [ws_logger_generic_1.LOGGER_SERVICE_CONFIG])
     ], LoggerService);
     return LoggerService;
-    var LoggerService_1;
 }());
 exports.LoggerService = LoggerService;
+//# sourceMappingURL=logger.service.js.map
