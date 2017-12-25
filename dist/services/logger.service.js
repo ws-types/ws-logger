@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var ws_logger_generic_1 = require("ws-logger-generic");
-var LoggerService = /** @class */ (function () {
+var LoggerService = (function () {
     function LoggerService(config) {
         var _this = this;
         this.config = config;
